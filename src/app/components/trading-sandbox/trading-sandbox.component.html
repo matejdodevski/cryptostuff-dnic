@@ -1,0 +1,147 @@
+<div class="contCustom">
+  <div
+    style="
+      width: 100%;
+      text-align: center;
+      font-size: 35px;
+      margin: 20px 0 20px 0;
+    "
+  >
+    Markets
+  </div>
+  <table
+    mat-table
+    [dataSource]="assets"
+    class="mat-elevation-z8"
+    style="font-weight: bold; width: 100%; margin: 20px 0 50px 0"
+  >
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="asset_id">
+      <th mat-header-cell *matHeaderCellDef style="font-weight: bolder">
+        Short name
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.asset_id }}</td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef style="font-weight: bolder">
+        Name
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="price_usd">
+      <th mat-header-cell *matHeaderCellDef style="font-weight: bolder">
+        Price USD$
+      </th>
+      <td mat-cell *matCellDef="let element">$ {{ element.price_usd }}</td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="volume_1hrs_usd">
+      <th mat-header-cell *matHeaderCellDef style="font-weight: bolder">
+        Volume 1 hour
+      </th>
+      <td mat-cell *matCellDef="let element">
+        $ {{ element.volume_1hrs_usd }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="volume_1day_usd">
+      <th mat-header-cell *matHeaderCellDef style="font-weight: bolder">
+        Volume 1 day
+      </th>
+      <td mat-cell *matCellDef="let element">
+        $ {{ element.volume_1day_usd }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="volume_1mth_usd">
+      <th mat-header-cell *matHeaderCellDef style="font-weight: bolder">
+        Volume 1 month
+      </th>
+      <td mat-cell *matCellDef="let element">
+        $ {{ element.volume_1mth_usd }}
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  <div
+    style="
+      width: 100%;
+      text-align: center;
+      font-size: 45px;
+      margin: 80px 0 30px 0;
+      font-weight: bolder;
+    "
+  >
+    Trading
+  </div>
+  <div style="text-align: center; width: 100%; margin: 20px 0">
+    <label style="font-size: 20px;">The trading sandbox offers a real-time test purchase of the popular crypto currencies. Try it out now!</label>
+  </div>
+  <div style="text-align: center; width: 100%; margin: 20px 0" *ngIf="amount < 0">
+    <label style="color: red">Invalid value, enter a postive value!</label>
+  </div>
+
+  <div style="display: flex; width: 100%; justify-content: center">
+    <mat-form-field
+      class="example-form-field"
+      appearance="outline"
+      style="margin: 0 20px"
+    >
+      <mat-label>USD $</mat-label>
+      <input
+        matInput
+        type="number"
+        placeholder="Enter your amount of $"
+        [(ngModel)]="amount"
+        name="am"
+        #am="ngModel"
+      />
+      <button
+        *ngIf="amount != 0"
+        matSuffix
+        mat-icon-button
+        aria-label="Clear"
+        (click)="amount = 0"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" style="margin: 0 20px">
+      <mat-label>Choose a crypto coin</mat-label>
+      <mat-select [(value)]="chosenCoin">
+        <mat-option *ngFor="let coin of cryptos" [value]="coin.short">
+          {{ coin.long }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button
+      mat-raised-button
+      (click)="buyCrypto(chosenCoin)"
+      style="margin: 0 20px; height: 57px; width: 100px"
+    >
+      Buy
+    </button>
+  </div>
+
+
+  <div style="width: 100%; text-align: center">
+    <div style="font-size: 35px">Portfolio:</div>
+    <br />
+    <div class="asad" *ngFor="let asset of portfolio" style="font-size: 25px">
+      <div style="margin-top: 10px">{{ asset.coin }} {{ asset.amount }}</div>
+    </div>
+  </div>
+</div>

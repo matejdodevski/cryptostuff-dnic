@@ -1,0 +1,22 @@
+.cont{
+    padding: 20px;
+    background-color: #000040;
+    min-height: calc(100vh - 90px);
+}
+
+.title{
+    font-size: 75px;
+    margin: 35px 0 35px 0;
+    color: #ffb703;
+    text-align: center;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.content{
+    font-size: 25px;
+    color: #ffb703;
+}
+.arrow{
+    cursor: pointer;
+}

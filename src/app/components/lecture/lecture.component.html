@@ -1,0 +1,16 @@
+<div class="cont">
+    <div>
+      
+        <div class="title">
+            <span class="arrow" *ngIf="prevId != '-1'" [routerLink]="'/lecture/'+prevId">&lt;</span>
+            <span class="arrow" *ngIf="prevId == '-1'" > </span>
+            <span>Lecture {{id}}</span>
+            <span class="arrow" *ngIf="nextId != '-1'" [routerLink]="'/lecture/'+nextId">&gt;</span>
+            <span class="arrow" *ngIf="nextId == '-1'" > </span>
+        </div>
+      
+        <div [innerHTML]="content" class="content">
+            
+        </div>
+    </div>
+</div>

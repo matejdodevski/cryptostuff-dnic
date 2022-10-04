@@ -1,0 +1,24 @@
+<mat-toolbar class="tb">
+  <span class="tbLeft">
+    <span class="tbLogo" [routerLink]="['/home']">CryptoStuff</span>
+    <span class="tbTab" [routerLink]="['/lectures']">Lectures</span>
+    <span class="tbTab" [routerLink]="['/video-lectures']">Video Lectures</span>
+    <span class="tbTab" [routerLink]="['/trading-sandbox']"
+      >Markets / Trading</span
+    >
+    <span class="tbTabPremium" [routerLink]="['/cryptostuff-premium']"
+      >CryptoStuff Premium</span
+    >
+    <span class="tbTab" [routerLink]="['/about']">About us</span>
+  </span>
+  <span *ngIf="email == null || email == undefined || email == ''">
+    <span class="tbTabLogin" [routerLink]="['/register']">Register</span>
+    <span class="tbTabLogin" [routerLink]="['/login']">Login</span>
+  </span>
+  <span *ngIf="email != null && email != undefined && email != ''">
+    <span style="margin-right: 10px;" >Hi {{email}} !</span>
+    <span class="tbTabLogin" (click)="logout()">Logout</span>
+  </span>
+</mat-toolbar>
+
+<router-outlet></router-outlet>

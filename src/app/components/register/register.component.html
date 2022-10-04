@@ -1,0 +1,45 @@
+<div class="cont">
+    <div class="title">Register</div>
+    <div class="form">
+      <mat-form-field
+        class="example-form-field"
+        appearance="outline"
+        style="margin: 0 20px"
+      >
+        <mat-label>Email</mat-label>
+        <input
+          matInput
+          type="text"
+          placeholder="Enter your email address"
+          [(ngModel)]="emailaddress"
+          name="email"
+          #email="ngModel"
+        />
+      </mat-form-field>
+  
+      <mat-form-field
+        class="example-form-field"
+        appearance="outline"
+        style="margin: 0 20px"
+      >
+        <mat-label>Password</mat-label>
+        <input
+          matInput
+          type="password"
+          placeholder="Enter your password"
+          [(ngModel)]="password"
+          name="pw"
+          #pw="ngModel"
+        />
+      </mat-form-field>
+      <a [routerLink]="['/login']" >Already have an account? Login here!</a>
+      <button
+        mat-raised-button
+        (click)="login()"
+        style=" height: 47px; width: 100px"
+      >
+        Register
+      </button>
+    </div>
+  </div>
+  
